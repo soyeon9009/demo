@@ -23,6 +23,7 @@ public class Board{
 //    @Id
 //    @GeneratedValue
     private Long seq;
+    private String category;
 
     private String title;
 

@@ -16,8 +16,20 @@
         <td><input name="title" type="text" th:value="${title}"></td>
     </tr>
     <tr>
+        <td bgcolor="orange" th:text="카테고리" width="80"></td>
+        <td>
+            <select name="tag">
+                <option value = "0">카테고리</option>
+                <option value = "분류1">분류1</option>
+                <option value = "분류2">분류2</option>
+            </select>
+            <input type="hidden" name ="cp" value = "0">
+        </td>
+    </tr>
+    <tr>
         <td bgcolor="orange" th:text="작성자"></td>
-        <td type="text" th:value="${writer}"></td>
+<!--        <td type="text" th:value="${writer}"></td>-->
+        <td th:text="${writer}"></td>
     </tr>
     <tr>
         <td bgcolor="orange" th:text="내용">

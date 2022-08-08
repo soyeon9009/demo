@@ -8,11 +8,26 @@
 <!--<p class="test">test color</p>-->
 <body th:align="center">
 <h1>게시글 목록</h1>
-<table th:align="center" border="1" th:cellpadding="0" th:cellspacing="0" th:width="700">
+<form name="category" action="category">
+    <select name="tag">
+        <option value = "0">카테고리</option>
+        <option value = "1">분류1</option>
+        <option value = "2">분류2</option>
+    </select>
+    <input type="hidden" name ="cp" value = "0">
+    <input type="submit" value ="검색">
+</form>
+
+<br>
+<br>
+<br>
+<table th:align="center" border="1" th:cellpadding="0" th:cellspacing="0" th:width="1000">
     <tr>
         <th bgcolor="orange" width="100">번호</th>
+        <th bgcolor="orange" width="100">카테고리</th>
         <th bgcolor="orange" width="200">제목</th>
         <th bgcolor="orange" width="150">작성자</th>
+        <th bgcolor="orange" width="200">내용</th>
         <th bgcolor="orange" width="150">등록일</th>
         <th bgcolor="orange" width="100">조회수</th>
     </tr>
@@ -28,6 +43,7 @@
         [HTML(클라이      언트)]seq=${board.seq} 에서 [JAVA(서버)]@RequestParam으로 매개변수 전달
         seq(변수명) = ${board.seq}(HTML(타임리프)에서의 데이터(클라이언트)
         -->
+        <td th:text="${board.category}"></td>
         <td> <a th:href="@{/getBoard(
                                 seq=${board.seq},
                                 userId='userIdTeste',
@@ -42,6 +58,7 @@
                 th:text="${board.title}"></a></td>
         <!--        <td th:text="${board.title}"></td>-->
         <td th:text="${board.writer}"></td>
+        <td th:text="${board.content.substring(0,10)}" ></td>
         <!--
             dates.format = 날짜를 일정형식으로 바꿔주는 포맷팅
         -->

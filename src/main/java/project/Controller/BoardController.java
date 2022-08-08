@@ -1,6 +1,7 @@
 package project.Controller;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import project.domain.Board;
 import org.springframework.stereotype.Controller;
@@ -77,22 +78,25 @@ public class BoardController {
 // -----방법3.객체이용 ------------------------------------------------------------------------------------------------------------
     @RequestMapping("insertBoard")
     public String insertBoard(@RequestParam("title")String title,
+                              @RequestParam("tag")String tag,
                               @RequestParam("writer")String writer,
                               @RequestParam("content")String content){
         count++;
         Board board = new Board();
 
         board.setSeq((long)count);
+        board.setCategory(tag);
         board.setTitle(title);
         board.setWriter(writer);
         board.setContent(content);
         board.setCreateDate(new Date());
         board.setCnt(0L);
+
         board_array.add(board);
         return "redirect:getBoardList";
 
     }
-//--------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------a-------------------------------------------------------
 
     //@어노테이션은 메서드 혹은 클래스에 속성,정의를 해서 스프링이나 자바에서 찾기 쉽도록 해주는 선언부
     //ex) @Override 은 부모 메서드를 재정의 하여 사용한다고 자바나 스프링에게 속성 명시
@@ -187,14 +191,15 @@ public class BoardController {
 //    }
     //--------------------------------------------------------------------------------------------------------------------
 
-    //Read
 
 //------------------------------------------------------------------------------------------------------------------------
 @RequestMapping("getBoardList")
 public String getBoardList(Model model){
-    model.addAttribute("board_array",board_array);
+        model.addAttribute("board_array",board_array);
     return "getBoardList";
 }
+
+
 //삭제--------------------------------------------------------------------------------------------------------------------
     //Delete
     @GetMapping("deleteBoard")
